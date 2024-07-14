@@ -17,7 +17,7 @@ class CustomButton extends StatefulWidget {
   final Color? color;
   final EdgeInsets? padding;
   final double radius;
-  final Widget? icon;
+  final IconData? icon;
 
   @override
   State<CustomButton> createState() => _CustomButtonState();
@@ -50,7 +50,7 @@ class _CustomButtonState extends State<CustomButton> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                if (widget.icon != null) widget.icon!,
+                if (widget.icon != null) Icon(widget.icon, color: onHover? widget.color ?? Theme.of(context).colorScheme.secondary: Colors.white,),
                 if (widget.icon != null && widget.text.isNotEmpty)
                   const SizedBox(width: 10),
                 Text(

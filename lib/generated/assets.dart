@@ -15,5 +15,7 @@ class Assets {
   static const String imagesLogo = 'assets/images/logo.png';
   static const String imagesLogoDart = 'assets/images/logo_dart.png';
   static const String imagesLogoLight = 'assets/images/logo_light.png';
+  static const String imagesAdmin = 'assets/images/admin.png';
+  static const String imagesLogoT = 'assets/images/logo_t.png';
 
 }

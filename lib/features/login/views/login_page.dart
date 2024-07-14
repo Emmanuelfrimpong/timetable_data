@@ -4,6 +4,7 @@ import 'package:timetable_data/core/widget/custom_button.dart';
 import 'package:timetable_data/core/widget/custom_input.dart';
 import 'package:timetable_data/features/login/provider/login_provider.dart';
 import 'package:timetable_data/generated/assets.dart';
+import 'package:timetable_data/utils/colors.dart';
 import 'package:timetable_data/utils/styles.dart';
 
 class LoginPage extends ConsumerStatefulWidget {

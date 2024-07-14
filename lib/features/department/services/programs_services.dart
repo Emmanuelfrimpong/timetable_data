@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:timetable_data/core/functions/string_actions.dart';
 import 'package:timetable_data/features/department/data/models/program_data_model.dart';
 
 class ProgramsServices {

@@ -32,10 +32,10 @@ class LoginProvider extends StateNotifier<DepartmentModel> {
     if (user != null) {
       MyStorage.saveData('user', user.toJson());
       ref.read(userProvider.notifier).setUser(user);
-      MyRouter(contex: context, ref: ref).navigateToNamed(
-          item: RouterItem.departmentRoute, pathParms: {'id': user.id!});
+      MyRouter(context: context, ref: ref).navigateToNamed(
+          item: RouterItem.departmentTablesRoute, pathParms: {'id': user.id!});
       CustomDialog.dismiss();
-      CustomDialog.showSuccess(message: message);
+      CustomDialog.showToast(message: message);
     } else {
       CustomDialog.dismiss();
       CustomDialog.showError(message: message);
@@ -74,7 +74,7 @@ class UserProvider extends StateNotifier<DepartmentModel?> {
     CustomDialog.dismiss();
     MyStorage.removeData('user');
     state = null;
-    MyRouter(contex: context, ref: ref).navigateToRoute(
+    MyRouter(context: context, ref: ref).navigateToRoute(
       RouterItem.homeRoute,
     );
   }

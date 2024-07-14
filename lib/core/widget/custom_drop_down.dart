@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:timetable_data/utils/styles.dart';
 
-
 class CustomDropDown extends StatelessWidget {
   const CustomDropDown(
       {super.key,
@@ -15,6 +14,7 @@ class CustomDropDown extends StatelessWidget {
       this.onSaved,
       this.label,
       this.prefixIcon,
+      this.dropDownColor,
       this.iconData});
 
   final dynamic value;
@@ -28,16 +28,18 @@ class CustomDropDown extends StatelessWidget {
   final Color? color;
   final IconData? iconData;
   final IconData? prefixIcon;
+  final Color? dropDownColor;
 
   @override
   Widget build(BuildContext context) {
     var styles = Styles(context);
     return DropdownButtonHideUnderline(
         child: DropdownButtonFormField(
+      dropdownColor: dropDownColor ?? Colors.white,
       borderRadius: BorderRadius.circular(5),
       style: styles.body(
           fontWeight: FontWeight.normal,
-          color: Theme.of(context).textTheme.labelLarge!.color),
+          color: color ?? Theme.of(context).textTheme.labelLarge!.color),
       decoration: InputDecoration(
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(radius ?? 5),
@@ -69,12 +71,14 @@ class CustomDropDown extends StatelessWidget {
               )
             : null,
         contentPadding: const EdgeInsets.symmetric(horizontal: 6, vertical: 5),
-        labelStyle: styles.body(),
+        labelStyle: styles.body(
+            color: color ?? Theme.of(context).colorScheme.secondary),
         labelText: label,
         hintText: hintText,
         focusColor: Theme.of(context).colorScheme.secondary,
         iconColor: Theme.of(context).colorScheme.secondary,
-        hintStyle: styles.body(),
+        hintStyle: styles.body(
+            color: color ?? Theme.of(context).colorScheme.secondary),
       ),
       onChanged: onChanged,
       onSaved: onSaved,
@@ -84,7 +88,7 @@ class CustomDropDown extends StatelessWidget {
       isExpanded: true,
       icon: Icon(
         iconData ?? Icons.arrow_drop_down,
-        color: Theme.of(context).colorScheme.secondary,
+        color: color ?? Theme.of(context).colorScheme.secondary,
       ),
     ));
   }

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:timetable_data/config/routes/router.dart';
-import 'package:timetable_data/utils/styles.dart';
+import 'package:timetable_data/utils/colors.dart';
 import 'package:url_strategy/url_strategy.dart';
 
 
@@ -35,7 +35,7 @@ class MyApp extends ConsumerWidget {
         useMaterial3: true,
       ),
       builder: FlutterSmartDialog.init(),
-      routerConfig: MyRouter(contex: context, ref: ref).router(),
+      routerConfig: MyRouter(context: context, ref: ref).router(),
     );
   }
 }

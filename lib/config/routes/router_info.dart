@@ -25,17 +25,35 @@ class RouterItem {
     name: 'about',
   );
 
-  static final departmentRoute = RouterItem(
-    path: '/department/:id',
-    name: 'department',
+  static final departmentTablesRoute = RouterItem(
+    path: '/department/:id/tables',
+    name: 'tables',
+  );
+
+  static final departmentProgramsRoute = RouterItem(
+    path: '/department/:id/programs',
+    name: 'programs',
+  );
+
+  static final departmentClassesRoute = RouterItem(
+    path: '/department/:id/classes',
+    name: 'classes',
+  );
+
+  static final departmenCoursesRoute = RouterItem(
+    path:  '/department/:id/courses',
+    name: 'courses',
   );
 
   static List<RouterItem> allRoutes = [
     loginRoute,
     homeRoute,
-    departmentRoute,
     contactRoute,
     aboutRoute,
+    departmentTablesRoute,
+    departmentProgramsRoute,
+    departmentClassesRoute,
+    departmenCoursesRoute,
   ];
 
   static RouterItem getRouteByPath(String fullPath) {

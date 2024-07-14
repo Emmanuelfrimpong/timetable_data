@@ -5,19 +5,23 @@ import 'package:timetable_data/about/views/about_page.dart';
 import 'package:timetable_data/config/routes/router_info.dart';
 import 'package:timetable_data/contact/views/contact_page.dart';
 import 'package:timetable_data/features/department/data/department_model.dart';
+import 'package:timetable_data/features/department/views/pages/allocations_page.dart';
+import 'package:timetable_data/features/department/views/pages/classes_page.dart';
+import 'package:timetable_data/features/department/views/pages/programs_page.dart';
+import 'package:timetable_data/features/department/views/pages/tabels_page.dart';
 import 'package:timetable_data/features/login/provider/login_provider.dart';
 import 'package:timetable_data/features/login/views/login_page.dart';
 import 'package:timetable_data/features/main/views/main_page.dart';
-import '../../features/department/views/department_view.dart';
+import '../../features/department/views/department_main.dart';
 import '../../features/home/views/home_page.dart';
 import 'package:universal_html/html.dart';
 
 class MyRouter {
   final WidgetRef ref;
-  final BuildContext contex;
+  final BuildContext context;
   MyRouter({
     required this.ref,
-    required this.contex,
+    required this.context,
   });
   router() => GoRouter(
           initialLocation: RouterItem.homeRoute.path,
@@ -74,18 +78,32 @@ class MyRouter {
                       return const AboutPage();
                     },
                   ),
-                  GoRoute(
-                      path: RouterItem.departmentRoute.path,
-                      name: RouterItem.departmentRoute.name,
-                      builder: (context, state) {
-                        return const DetpartmentView();
-                      }),
                 ]),
+            ShellRoute(
+                builder: (context, state, child) {
+                  return DepartmentMain(
+                    child,
+                  );
+                },
+                routes: [
+                  GoRoute(path: RouterItem.departmentTablesRoute.path, name: RouterItem.departmentTablesRoute.name, builder: (context, state) {
+                    return const TablesPage();
+                  }),
+                  GoRoute(path: RouterItem.departmentProgramsRoute.path, name: RouterItem.departmentProgramsRoute.name, builder: (context, state) {
+                    return const ProgramsPage();
+                  }),
+                  GoRoute(path: RouterItem.departmentClassesRoute.path, name: RouterItem.departmentClassesRoute.name, builder: (context, state) {
+                    return const ClassesPage();
+                  }),
+                  GoRoute(path: RouterItem.departmenCoursesRoute.path, name: RouterItem.departmenCoursesRoute.name, builder: (context, state) {
+                    return const AllocationsPage();
+                  }),
+                ])
           ]);
 
   void navigateToRoute(RouterItem item) {
     ref.read(routerProvider.notifier).state = item.name;
-    contex.go(item.path);
+    context.go(item.path);
   }
 
   void navigateToNamed(
@@ -93,7 +111,7 @@ class MyRouter {
       required RouterItem item,
       Map<String, dynamic>? extra}) {
     ref.read(routerProvider.notifier).state = item.name;
-    contex.goNamed(item.name, pathParameters: pathParms, extra: extra);
+    context.goNamed(item.name, pathParameters: pathParms, extra: extra);
   }
 }
 
