@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/widgets.dart';
 
-class ClassDataModel {
+class ClassModel {
   String? id;
   String level;
   String? studyMode;
@@ -13,7 +13,8 @@ class ClassDataModel {
   String? program;
   String year;
   String semester;
-  ClassDataModel({
+
+  ClassModel({
     this.id,
     required this.level,
     this.studyMode,
@@ -26,7 +27,7 @@ class ClassDataModel {
     required this.semester,
   });
 
-  ClassDataModel copyWith({
+  ClassModel copyWith({
     ValueGetter<String?>? id,
     String? level,
     ValueGetter<String?>? studyMode,
@@ -38,13 +39,14 @@ class ClassDataModel {
     String? year,
     String? semester,
   }) {
-    return ClassDataModel(
+    return ClassModel(
       id: id != null ? id() : this.id,
       level: level ?? this.level,
       studyMode: studyMode != null ? studyMode() : this.studyMode,
       name: name != null ? name() : this.name,
       size: size != null ? size() : this.size,
-      hasDisability: hasDisability != null ? hasDisability() : this.hasDisability,
+      hasDisability:
+          hasDisability != null ? hasDisability() : this.hasDisability,
       department: department != null ? department() : this.department,
       program: program != null ? program() : this.program,
       year: year ?? this.year,
@@ -67,8 +69,8 @@ class ClassDataModel {
     };
   }
 
-  factory ClassDataModel.fromMap(Map<String, dynamic> map) {
-    return ClassDataModel(
+  factory ClassModel.fromMap(Map<String, dynamic> map) {
+    return ClassModel(
       id: map['id'],
       level: map['level'] ?? '',
       studyMode: map['studyMode'],
@@ -84,41 +86,42 @@ class ClassDataModel {
 
   String toJson() => json.encode(toMap());
 
-  factory ClassDataModel.fromJson(String source) => ClassDataModel.fromMap(json.decode(source));
+  factory ClassModel.fromJson(String source) =>
+      ClassModel.fromMap(json.decode(source));
 
   @override
   String toString() {
-    return 'ClassDataModel(id: $id, level: $level, studyMode: $studyMode, name: $name, size: $size, hasDisability: $hasDisability, department: $department, program: $program, year: $year, semester: $semester)';
+    return 'ClassModel(id: $id, level: $level, studyMode: $studyMode, name: $name, size: $size, hasDisability: $hasDisability, department: $department, program: $program, year: $year, semester: $semester)';
   }
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
-  
-    return other is ClassDataModel &&
-      other.id == id &&
-      other.level == level &&
-      other.studyMode == studyMode &&
-      other.name == name &&
-      other.size == size &&
-      other.hasDisability == hasDisability &&
-      other.department == department &&
-      other.program == program &&
-      other.year == year &&
-      other.semester == semester;
+
+    return other is ClassModel &&
+        other.id == id &&
+        other.level == level &&
+        other.studyMode == studyMode &&
+        other.name == name &&
+        other.size == size &&
+        other.hasDisability == hasDisability &&
+        other.department == department &&
+        other.program == program &&
+        other.year == year &&
+        other.semester == semester;
   }
 
   @override
   int get hashCode {
     return id.hashCode ^
-      level.hashCode ^
-      studyMode.hashCode ^
-      name.hashCode ^
-      size.hashCode ^
-      hasDisability.hashCode ^
-      department.hashCode ^
-      program.hashCode ^
-      year.hashCode ^
-      semester.hashCode;
+        level.hashCode ^
+        studyMode.hashCode ^
+        name.hashCode ^
+        size.hashCode ^
+        hasDisability.hashCode ^
+        department.hashCode ^
+        program.hashCode ^
+        year.hashCode ^
+        semester.hashCode;
   }
 }
