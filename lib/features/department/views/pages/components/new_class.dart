@@ -107,7 +107,7 @@ class _NewClassPageState extends ConsumerState<NewClassPage> {
                             
                           ),
                         ),
-                        const SizedBox(height: 10),
+                        const SizedBox(height: 10), 
                         const CustomTextFields(
                           hintText: 'Class Size',
                           prefixIcon: Icons.class_,
