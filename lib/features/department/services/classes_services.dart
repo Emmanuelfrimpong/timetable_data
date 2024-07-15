@@ -45,4 +45,19 @@ class ClassesServices{
         .map((doc) => ClassModel.fromMap(doc.data() as Map<String, dynamic>))
         .toList());
   }
+
+  static Future<ClassModel?>getClass({required String department, required String name}) {
+    return _collection.where(
+      'department',
+      isEqualTo: department,
+    ).where(
+      'name',
+      isEqualTo: name,
+    ).get().then((value) {
+      if (value.docs.isNotEmpty) {
+        return ClassModel.fromMap(value.docs.first.data() as Map<String, dynamic>);
+      }
+      return null;
+    });
+  }
 }

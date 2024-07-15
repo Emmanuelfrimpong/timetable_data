@@ -52,9 +52,14 @@ class _ClassesPageState extends ConsumerState<ClassesPage> {
                         : styles.isTablet
                             ? styles.width * 0.4
                             : styles.width * 0.35,
-                    child: const CustomTextFields(
+                    child: CustomTextFields(
                       hintText: 'Search for class',
                       prefixIcon: Icons.search,
+                      onChanged: (query) {
+                        ref
+                            .read(classesProvider.notifier)
+                            .filterClasses(value: query);
+                      },
                     ),
                   ),
                   const SizedBox(width: 10),
@@ -103,6 +108,16 @@ class _ClassesPageState extends ConsumerState<ClassesPage> {
                           'Level'.toUpperCase(),
                           style: titleStyles,
                         ),
+                        onSort: (columnIndex, ascending) =>
+                            classData.sort((a, b) {
+                              if (ascending) {
+                                return int.parse(a.level)
+                                    .compareTo(int.parse(b.level));
+                              } else {
+                                return int.parse(b.level)
+                                    .compareTo(int.parse(a.level));
+                              }
+                            }),
                         size: ColumnSize.S),
                     DataColumn2(
                       label: Text('Class Name'.toUpperCase()),
@@ -165,16 +180,24 @@ class _ClassesPageState extends ConsumerState<ClassesPage> {
                           Text(classItem.level, style: rowStyles),
                         ),
                         DataCell(
+                          Text(classItem.name ?? '', style: rowStyles),
+                        ),
+                        DataCell(
                           Text(classItem.size ?? '', style: rowStyles),
                         ),
                         DataCell(
                           Text(classItem.hasDisability ?? '', style: rowStyles),
                         ),
                         DataCell(
-                          Text(classItem.program ?? '', style: rowStyles),
+                          Text(classItem.program ?? '',
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
+                              style: rowStyles),
                         ),
-                        DataCell(
-                            Text(classItem.department ?? '', style: rowStyles)),
+                        DataCell(Text(classItem.department ?? '',
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                            style: rowStyles)),
                         DataCell(
                             Text(classItem.studyMode ?? '', style: rowStyles)),
                         DataCell(Text(classItem.year, style: rowStyles)),
@@ -188,11 +211,11 @@ class _ClassesPageState extends ConsumerState<ClassesPage> {
                                   CustomDialog.showInfo(
                                       buttonText: 'Delete',
                                       message:
-                                          'Are you sure you want to delete this program?',
+                                          'Are you sure you want to delete this class?',
                                       onPressed: () {
                                         ref
                                             .read(classesProvider.notifier)
-                                            .deleteProgram(
+                                            .deleteClass(
                                                 ref: ref, id: classItem.id!);
                                       });
                                 },

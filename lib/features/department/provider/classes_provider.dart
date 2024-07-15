@@ -1,4 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:timetable_data/core/widget/custom_dialog.dart';
 import 'package:timetable_data/features/department/data/models/class_data_model.dart';
 import 'package:timetable_data/features/department/services/classes_services.dart';
 import 'package:timetable_data/features/login/provider/login_provider.dart';
@@ -8,7 +9,7 @@ final classStream = StreamProvider<List<ClassModel>>((ref) async* {
   var department = ref.watch(userProvider);
   var settings = ref.watch(settingsProvider);
   if (department != null) {
-    var data = ClassesServices.getClasses(department.id!);
+    var data = ClassesServices.getClasses(department.name!);
     await for (var value in data) {
       var classes = value
           .where((element) =>
@@ -20,7 +21,6 @@ final classStream = StreamProvider<List<ClassModel>>((ref) async* {
     }
   }
 });
-
 
 class ClassFilter {
   List<ClassModel> items;
@@ -41,10 +41,8 @@ class ClassFilter {
   }
 }
 
-
 final classesProvider = StateNotifierProvider<ClassesProvider, ClassFilter>(
     (ref) => ClassesProvider());
-
 
 class ClassesProvider extends StateNotifier<ClassFilter> {
   ClassesProvider() : super(ClassFilter(filter: [], items: []));
@@ -57,10 +55,22 @@ class ClassesProvider extends StateNotifier<ClassFilter> {
     var filter = state.items
         .where((element) =>
             element.name!.toLowerCase().contains(value.toLowerCase()) ||
+            element.level.toLowerCase().contains(value.toLowerCase()) ||
             element.studyMode!.toLowerCase().contains(value.toLowerCase()))
         .toList();
     state = state.copyWith(filter: filter);
   }
 
-  void deleteProgram({required WidgetRef ref, required String id}) {}
+  void deleteClass({required WidgetRef ref, required String id}) async{
+    CustomDialog.dismiss();
+    CustomDialog.showLoading(message: 'Deleting class....');
+    var result = await ClassesServices.deleteClass(id);
+    if (result) {
+      CustomDialog.dismiss();
+      CustomDialog.showToast(message: 'Class deleted successfully');
+    } else {
+      CustomDialog.dismiss();
+      CustomDialog.showError(message: 'Failed to delete class');
+    }
+  }
 }
