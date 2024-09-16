@@ -111,7 +111,7 @@ class SideBar extends ConsumerWidget {
           onTap: () {
             MyRouter(context: context, ref: ref).navigateToNamed(
               item: RouterItem.departmentTablesRoute,
-              pathParms: {'id': ref.watch(userProvider)!.id!},
+              pathPrams: {'id': ref.watch(userProvider)!.id!},
             );
           },
         ),
@@ -126,7 +126,7 @@ class SideBar extends ConsumerWidget {
             onTap: () {
               MyRouter(context: context, ref: ref).navigateToNamed(
                 item: RouterItem.departmentProgramsRoute,
-                pathParms: {'id': ref.watch(userProvider)!.id!},
+                pathPrams: {'id': ref.watch(userProvider)!.id!},
               );
             },
           ),
@@ -142,7 +142,7 @@ class SideBar extends ConsumerWidget {
             onTap: () {
               MyRouter(context: context, ref: ref).navigateToNamed(
                 item: RouterItem.departmentClassesRoute,
-                pathParms: {'id': ref.watch(userProvider)!.id!},
+                pathPrams: {'id': ref.watch(userProvider)!.id!},
               );
             },
           ),
@@ -158,7 +158,7 @@ class SideBar extends ConsumerWidget {
             onTap: () {
               MyRouter(context: context, ref: ref).navigateToNamed(
                 item: RouterItem.departmenCoursesRoute,
-                pathParms: {'id': ref.watch(userProvider)!.id!},
+                pathPrams: {'id': ref.watch(userProvider)!.id!},
                 
               );
             },

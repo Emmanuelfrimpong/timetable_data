@@ -70,9 +70,8 @@ class DepartmentProvider extends StateNotifier<FilterDepartment> {
     var departmentsIds = state.items.map((e) => e.id!).toList();
     //get only numbers from the ids
     var values = departmentsIds.map((e) {
-      String newnum = e.replaceAll(RegExp(r'[^0-9]'), '');
-      print(e);
-      return int.tryParse(newnum);
+      String newNum = e.replaceAll(RegExp(r'[^0-9]'), '');
+      return int.tryParse(newNum);
     }).toList();
     List<int> numbers = [];
     for (var value in values) {
@@ -85,7 +84,7 @@ class DepartmentProvider extends StateNotifier<FilterDepartment> {
     var max = numbers.isEmpty
         ? 0
         : numbers
-            .reduce((value, element) => value! > element! ? value : element);
+            .reduce((value, element) => value > element ? value : element);
     var prefix = max <= 9
         ? '000'
         : max < 100

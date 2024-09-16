@@ -1,9 +1,10 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:timetable_data/core/widget/custom_dialog.dart';
 import 'package:timetable_data/features/department/data/models/class_data_model.dart';
 import 'package:timetable_data/features/department/services/classes_services.dart';
-import 'package:timetable_data/features/department/views/pages/classes_page.dart';
 import 'package:timetable_data/features/login/provider/login_provider.dart';
 import 'package:timetable_data/features/settings/provider/settings_provider.dart';
 
@@ -53,9 +54,9 @@ class NewClass extends StateNotifier<ClassModel> {
       year: settings.currentYear,
       semester: settings.currentSemester,
     );
-    var existenClass = await ClassesServices.getClass(
+    var existentClass = await ClassesServices.getClass(
         department: department!.name!, name: state.name.toString());
-    if (existenClass != null) {
+    if (existentClass != null) {
       CustomDialog.dismiss();
       CustomDialog.showError(message: 'Class already exist');
     } else {

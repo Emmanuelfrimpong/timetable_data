@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:timetable_data/features/settings/data/settings.dart';
 import 'package:timetable_data/features/settings/provider/settings_provider.dart';
-import 'package:timetable_data/features/settings/services/settings_services.dart';
 import '../../../core/widget/components/nav_bar.dart';
 
 class MainPage extends ConsumerWidget {

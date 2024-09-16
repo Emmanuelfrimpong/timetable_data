@@ -33,7 +33,7 @@ class LoginProvider extends StateNotifier<DepartmentModel> {
       MyStorage.saveData('user', user.toJson());
       ref.read(userProvider.notifier).setUser(user);
       MyRouter(context: context, ref: ref).navigateToNamed(
-          item: RouterItem.departmentTablesRoute, pathParms: {'id': user.id!});
+          item: RouterItem.departmentTablesRoute, pathPrams: {'id': user.id!});
       CustomDialog.dismiss();
       CustomDialog.showToast(message: message);
     } else {

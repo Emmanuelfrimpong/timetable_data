@@ -7,7 +7,6 @@ import 'package:timetable_data/features/login/provider/login_provider.dart';
 import 'package:timetable_data/features/settings/provider/settings_provider.dart';
 import 'package:timetable_data/generated/assets.dart';
 import 'package:timetable_data/utils/styles.dart';
-import 'package:universal_html/js_util.dart';
 
 import '../../../config/routes/router_info.dart';
 import '../../../core/widget/components/app_bar_item.dart';
@@ -20,10 +19,10 @@ class DepartmentMain extends ConsumerStatefulWidget {
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() =>
-      _DetpartmentViewState();
+      _DepartmentViewState();
 }
 
-class _DetpartmentViewState extends ConsumerState<DepartmentMain> {
+class _DepartmentViewState extends ConsumerState<DepartmentMain> {
   @override
   Widget build(BuildContext context) {
     var styles = Styles(context);
@@ -194,7 +193,7 @@ class _DetpartmentViewState extends ConsumerState<DepartmentMain> {
                 onTap: () {
                   MyRouter(context: context, ref: ref).navigateToNamed(
                       item: RouterItem.departmentTablesRoute,
-                      pathParms: {'id': ref.watch(userProvider)!.id!});
+                      pathPrams: {'id': ref.watch(userProvider)!.id!});
                   Navigator.of(context).pop();
                 }),
           ),
@@ -207,7 +206,7 @@ class _DetpartmentViewState extends ConsumerState<DepartmentMain> {
                 onTap: () {
                   MyRouter(context: context, ref: ref).navigateToNamed(
                       item: RouterItem.departmentProgramsRoute,
-                      pathParms: {'id': ref.watch(userProvider)!.id!});
+                      pathPrams: {'id': ref.watch(userProvider)!.id!});
                   Navigator.of(context).pop();
                 }),
           ),
@@ -220,7 +219,7 @@ class _DetpartmentViewState extends ConsumerState<DepartmentMain> {
                 onTap: () {
                   MyRouter(context: context, ref: ref).navigateToNamed(
                       item: RouterItem.departmentClassesRoute,
-                      pathParms: {'id': ref.watch(userProvider)!.id!});
+                      pathPrams: {'id': ref.watch(userProvider)!.id!});
                   Navigator.of(context).pop();
                 }),
           ),
@@ -233,7 +232,7 @@ class _DetpartmentViewState extends ConsumerState<DepartmentMain> {
                 onTap: () {
                   MyRouter(context: context, ref: ref).navigateToNamed(
                       item: RouterItem.departmenCoursesRoute,
-                      pathParms: {'id': ref.watch(userProvider)!.id!});
+                      pathPrams: {'id': ref.watch(userProvider)!.id!});
                   Navigator.of(context).pop();
                 }),
           ),

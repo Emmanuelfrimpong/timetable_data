@@ -107,11 +107,11 @@ class MyRouter {
   }
 
   void navigateToNamed(
-      {required Map<String, String> pathParms,
+      {required Map<String, String> pathPrams,
       required RouterItem item,
       Map<String, dynamic>? extra}) {
     ref.read(routerProvider.notifier).state = item.name;
-    context.goNamed(item.name, pathParameters: pathParms, extra: extra);
+    context.goNamed(item.name, pathParameters: pathPrams, extra: extra);
   }
 }
 
